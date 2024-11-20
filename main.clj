@@ -56,7 +56,8 @@
   (when (not (fs/exists? app-dir))
     (fs/create-dir app-dir))
 
-  (let [name (nth *command-line-args* 0)]
+  (if-let [name (nth *command-line-args* 0 nil)]
     (case name
       "new" (create-vm app-dir)
-      (use-vm name app-dir))))
+      (use-vm name app-dir))
+    (println "provide name of vm or command")))
