@@ -1,1 +1,2 @@
-."bb" ..\main.clj $args
+
+."bb" "$($PSScriptRoot)\..\main.clj" $args
