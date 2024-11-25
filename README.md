@@ -3,7 +3,14 @@
 <p align="center">A proof-of-concept CLI tool for managing Virtual Machines with QEMU in a not nerdy config way</p>
 
 ## Why?
-I didn't want to waste time in search of QEMU commands in my shell history to startup a VM and keep VM's configs easy and intuitive to edit.
+I didn't want to waste time in search of QEMU commands in my shell history to startup a VM and also I wanted to keep VMs configurations easily readable.
+
+## Use
+```
+wade new
+wade vm-name
+wade vm-name insert iso-image-from-your-downloads-folder
+```
 
 # Installation
 TODO:
