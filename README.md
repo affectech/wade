@@ -5,7 +5,7 @@
 <br>
 
 ## Why?
-I didn't want to waste time in search of QEMU commands in my shell history to startup a VM and also I wanted to store my VMs as easy-to-read configs.
+I didn't want to waste time in search of QEMU commands in my shell history to boot a single VM and also I wanted to store my VMs as easy-to-find-and-read configs.
 
 ## Use
 ```
