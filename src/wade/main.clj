@@ -1,4 +1,5 @@
-(ns main
+(ns wade.main
+  (:gen-class)
   (:require [clojure.java.io :as io]
             [cheshire.core :as json]
             [babashka.fs :as fs]
@@ -28,13 +29,13 @@
     (System/exit 1)))
 
 
-(defn use-vm-boot-cmd []
+(defn use-vm-insert-cmd []
   (if (= "insert" (nth *command-line-args* 1 nil))
     (when-let [image (nth *command-line-args* 2 nil)]
       ["-cdrom" (fs/path (fs/home) "Downloads" image)])
     nil))
 
-(defn use-vm [name app-dir]
+(defn use-vm [name app-dir & args]
   (let [vm-dir (fs/path app-dir name)]
     (if (fs/exists? vm-dir)
       (let [config (json/parse-string
@@ -46,18 +47,22 @@
                "-accel" "accel=whpx,kernel-irqchip=off"
                "-smp" (get config "cores")
                "-m" (get config "memory")
+               "-device" "virtio-vga-gl"
+               "-display" "sdl,gl=on"
                "-drive" (format "file=%s,format=qcow2" (fs/path vm-dir "system.qcow2"))
-               (use-vm-boot-cmd)))
+               (use-vm-insert-cmd)))
       (println "can't find vm"))))
 
 
 
-(let [app-dir (fs/path (fs/home) "VMs")]
-  (when (not (fs/exists? app-dir))
-    (fs/create-dir app-dir))
 
-  (if-let [name (nth *command-line-args* 0 nil)]
-    (case name
-      "new" (create-vm app-dir)
-      (use-vm name app-dir))
-    (println "provide name of vm or command")))
+(defn -main [& args]
+  (let [app-dir (fs/path (fs/home) "VMs")]
+    (when (not (fs/exists? app-dir))
+      (fs/create-dir app-dir))
+
+    (if-let [name (nth args 0 nil)]
+      (case name
+        "new" (create-vm app-dir)
+        (use-vm name app-dir (drop 1 args)))
+      (println "provide name of vm or command"))))

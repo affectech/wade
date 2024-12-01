@@ -1,0 +1,16 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - clj -T:build uber
+  graal:
+    deps: [build]
+    cmds:
+      - native-image --initialize-at-build-time -jar .\target\wade-0.0.1-standalone.jar
+  repl:
+    cmds:
+      - clj -M:repl -m nrepl.cmdline
+  wade:
+    cmds:
+      - 'clj -M -m wade {{.CLI_ARGS}}'

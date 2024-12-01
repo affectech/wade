@@ -1,3 +1,5 @@
 .calva/
 .lsp/
 .clj-kondo/
+.cpcache/
+target/
