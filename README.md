@@ -6,9 +6,9 @@
 
 ## Why?
 I am using raw QEMU on my Windows machine (yes, it's odd) for some time and I have put a list of I would like to have:
-- not to waste time searching for QEMU commands in my shell history just to boot a single VM
-- store my VMs as easy-to-find and readable configs.
-- use QEMU's storage overlay feature
+- [x] not to waste time searching for QEMU commands in my shell history just to boot a single VM
+- [x] store my VMs as easy-to-find and readable configs.
+- [ ] use QEMU's storage overlay feature
 
 ## Use
 ```
