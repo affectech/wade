@@ -5,7 +5,7 @@
 <br>
 
 ## Why?
-I am using raw QEMU on my Windows machine (yes, it's odd) for some time and I have gathered a list of items I would like to have:
+I am using raw QEMU on my Windows machine (yes, it's kinda odd) for some time and I have gathered a list of items I would like to have:
 - [x] not to waste time searching for QEMU commands in my shell history just to boot a single VM
 - [x] store my VMs as easy-to-find and readable configs.
 - [ ] use QEMU's storage overlay feature
